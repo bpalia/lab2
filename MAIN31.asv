@@ -220,23 +220,4 @@ z = iddata(y,u);
 MboxJ = pem(z,Mi); present(MboxJ);
 ehat = resid(MboxJ,z);
 
-fnum = fnum +1;
-figure(fnum)
-stem(-cutoff:cutoff,crosscorr(u,ehat.y,cutoff));
-title('Cross correlation function u and e correct'); xlabel('Lag');
-hold on
-plot(-cutoff:cutoff,2/sqrt(length(u))*ones(1,2*cutoff+1),'--') 
-plot(-cutoff:cutoff,-2/sqrt(length(u))*ones(1,2*cutoff+1),'--')
-hold off
 
-fnum = fnum +1;
-figure(fnum)
-subplot(211)
-acf(ehat.y, cutoff, 0.05, true, 0, 0);
-title('ACF for resid e')
-subplot(212)
-pacf(ehat.y, cutoff, 0.05, true, 0);
-title('PACF for resid e')
-fnum = fnum + 1;
-figure(fnum)
-normplot(ehat.y)
