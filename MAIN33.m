@@ -39,6 +39,7 @@ hold off
 
 err_3 = y(k+1:end)-yhat_3(k+1:end);
 err_3_m = mean(err_3);
+err_3_var2 = var(err_3);
 err_3_var = sum(Fk.^2)*var_n;
 CI_3 = 2*sqrt(var_n*sum(Fk.^2));
 
@@ -56,7 +57,8 @@ numout_3 = sum(abs(err_3)>CI_3)/length(err_3)*100;
 fnum = fnum+1;
 figure(fnum)
 R = covf(err_3,40);
-stem(R) title ('Covariance of residuals for 3-step prediction')
+stem(R) 
+title ('Covariance of residuals for 3-step prediction')
 %% k = 26
 k = 26;
 [Fk, Gk] = deconv(conv([1, zeros(1,k-1)],CS),AS);
